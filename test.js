@@ -24,7 +24,7 @@ document.addEventListener("mousemove", function (event) {
 
 let mousedown = false;
 let mousePos = new CR.Vector.Vector2(0, 0);
-
+//why github why??
 function mouse(event) {
     mousePos.x = (event.clientX / screen.availWidth) * 1920 - 1920 / 2
     mousePos.y = (event.clientY / screen.availHeight) * 1080 - 1080 / 2 - event.clientY / screen.availHeight * (screen.height - screen.availHeight);
