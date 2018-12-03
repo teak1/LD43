@@ -26,8 +26,8 @@ let mousedown = false;
 let mousePos = new CR.Vector.Vector2(0, 0);
 
 function mouse(event) {
-    mousePos.x = event.clientX - width / 2;
-    mousePos.y = event.clientY - height / 2;
+    mousePos.x = event.clientX - innerWidth / 2;
+    mousePos.y = event.clientY - innerHeight / 2;
 }
 let grave = Object.assign(new Image(), {
     src: `sprites/enemynormal_dead.png`
