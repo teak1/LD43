@@ -31,7 +31,7 @@ class Player extends Entity {
                     dir = dir.scale(CONFIG.throwR / dir.mag());
                 }
                 this.grabbing.setState("thrown");
-                this.grabbing.path = [this.grabbing.pos, dir];
+                this.grabbing.path = [this.grabbing.pos, dir.sub(new CR.Vector.Vector2(48, 0))];
                 this.grabbing = null;
             }
         }
