@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CR - Teak1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="easystar-0.4.3.js"></script>
+    <script>
+        let addScripts = srcs => {
+            if (!srcs.length) return;
+            var script = document.createElement("script");
+            script.setAttribute("src", `./${srcs.shift()}.js`);
+            document.head.appendChild(script);
+            let prom = new Promise(function name(resolve, reject) {
+                script.addEventListener("load", _ => {
+                    resolve()
+                    addScripts(srcs);
+                });
+            });
+            return prom;
+        };
+        System.defaultJSExtensions = true;
+        System.config({
+            baseURL: "./build"
+        });
+
+        System.import("main").then(_ => {
+            var scripts = [
+                "game/CONFIG",
+                "game/Building",
+                "game/Entity",
+                "game/Enemy",
+                "game/Villager",
+                "game/Player"
+            ]
+            if (window.location.search == "?notut") {
+                scripts.push("test");
+                hideTutorial(true);
+            }
+            addScripts(scripts);
+        });
+
+        function hideTutorial(auto) {
+            if (!auto) addScripts(['test'])
+            document.getElementById("how2play").hidden = true;
+        }
+    </script>
+    <style>
+        canvas {
+            width: 100%;
+            height: auto;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .deathScreenWrapper {
+            background-color: gray;
+            width: 200px;
+            height: 300px;
+            border-radius: 150px 150px 0px 0px;
+            position: relative;
+            top: -150px;
+            left: -100px;
+            border: outset black 3px;
+        }
+
+        .deathscreen {
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+        }
+
+        .deathscreen-text {
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .deathscreen-score {
+            text-shadow: 1px 1px red;
+            text-decoration-style: wavy;
+        }
+
+        .deathscreen-playagain {
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .how2play {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="deathscreen" class="deathscreen" hidden>
+        <div class="deathScreenWrapper">
+            <div class="deathscreen-text">
+                <br />
+                <b>RIP</b>
+                <br />You died<br />
+                <span id="score_enemykill" class="deathscreen-score">1231</span>
+                <img src="sprites/enemynormal_dead.png" height=23 /><br />
+                <span id="score_villager" class="deathscreen-score">1231</span>
+                <img src="sprites/villagernormal_idle.png" height=23 />
+                <br />
+                <a href=".?notut" class="deathscreen-playagain">play again</a>
+            </div>
+        </div>
+    </div>
+    <div id="how2play" class="how2play" onClick="hideTutorial()">
+        <h1>how to play</h1>
+        <br />
+        <h3>Objective</h3>
+        The objective of the game is to survive as long as posible.
+        <br />
+        <h3>Villagers</h3>
+        <img src="sprites/villagernormal_idle.png" alt="villagerSprite" /><br />
+        The villagers can be used to defeat the oncoming enemies by throwing them at the enemies.<br />
+        To pick up a villager you just need to click on it white it is near the player.<br />
+        <h3>Hospital</h3>
+        <img src="sprites/buildinghospital.png" alt="hospitalSprite"><br />
+        Villagers can be thrown in the hospital to heal them.
+        <br />
+        <h3>Enemy</h3>
+        <img src="sprites/enemynormal_idle.png" alt="enemySprite"><br />
+        The enemy will try to attack villagers and the player.
+        <br />
+        <br />
+        <br />
+        <h1>click anywhere to start
+
+        </h1>
+    </div>
+</body>
+
+</html>

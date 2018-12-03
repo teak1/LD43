@@ -1,0 +1,10 @@
+* Enemy pathfinding
+* Villager wandering
+* Fix rendering system
+* Make sprites for everything
+* Design a city layout
+* Add sounds (and a Wilheim death scream)
+* Bugfix
+* Add a death animation
+* Get buildings functional
+* Get buildings functional so that if you throw a villager into one the villager comes out fully healed after ~10 seconds. 

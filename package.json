@@ -1,0 +1,15 @@
+{
+  "name": "ts base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "easystarjs": "^0.4.3",
+    "systemjs": "^2.0.2"
+  }
+}
